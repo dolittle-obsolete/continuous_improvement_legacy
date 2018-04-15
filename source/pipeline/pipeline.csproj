@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dolittle.Collections" Version="2.0.0-alpha2*" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\concepts\concepts.csproj" />
   </ItemGroup>
+
 
 </Project>

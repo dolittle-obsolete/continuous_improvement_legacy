@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
+using concepts;
 
 namespace pipeline
 {
@@ -12,6 +13,20 @@ namespace pipeline
     public class context
     {
         Dictionary<string, object>  _values = new Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="context"/>
+        /// </summary>
+        /// <param name="project"><see cref="project_id">Project identifier</see></param>
+        public context(project_id project)
+        {
+            project_id = project;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="project_id"/> for the project
+        /// </summary>
+        public project_id project_id { get;}
 
 
         /// <summary>
