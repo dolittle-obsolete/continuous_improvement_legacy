@@ -1,0 +1,30 @@
+# Base64 Encoding: https://scottlinux.com/2012/09/01/encode-or-decode-base64-from-the-command-line/
+# echo -n 'string' | base64
+# https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/aks/azure-files-dynamic-pv.md
+# sudo mount -t cifs //dolittle.file.core.windows.net/source [mount point] -o vers=3.0,username=dolittle,password=tDIrUNIT24APo6eKQwq0y1WDoT0wq+rqbbxUs+uVHxUi154+/XEgPfpU+DKrDjEm+WPEQ2Z3C3BsQjPLC9a83w==,dir_mode=0777,file_mode=0777,sec=ntlmssp
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: source-secret
+  namespace: dolittle
+type: Opaque
+data:
+  azurestorageaccountname: ZG9saXR0bGU=
+  azurestorageaccountkey: dERJclVOSVQyNEFQbzZlS1F3cTB5MVdEb1Qwd3ErcnFiYnhVcyt1Vkh4VWkxNTQrL1hFZ1BmcFUrREtyRGpFbStXUEVRMlozQzNCc1FqUExDOWE4M3c9PQ==
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: source
+  namespace: dolittle
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1000Gi
+  selector:
+    matchLabels:
+      name: dolittle-source

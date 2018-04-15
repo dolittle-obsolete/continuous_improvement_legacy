@@ -1,0 +1,23 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: dolittle-source
+  labels:
+    type: azure-file
+    name: dolittle-source
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1000Gi
+  accessModes:
+    - ReadWriteOnce
+  azureFile:
+    secretName: source-secret
+    shareName: dsource
+    readOnly: false
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=1000
+    - gid=1000
